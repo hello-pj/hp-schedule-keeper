@@ -11,6 +11,14 @@ interface SpreadsheetEvent {
 export class SpreadsheetService {
   private static SHEET_ID = '1zNS9sCVlxTlacEjfAgvChemQmq9p07TopIsHsHh7Ck4';
 
+  private static groupNameToId: { [key: string]: string } = {
+    'モーニング娘。': 'morningmusume',
+    'アンジュルム': 'angerme',
+    'Juice=Juice': 'juicejuice',
+    'つばきファクトリー': 'tsubaki',
+    'BEYOOOOONDS': 'beyonds'
+  };
+
   static async fetchEvents(): Promise<{ success: boolean; error?: string; data?: any[] }> {
     try {
       const response = await fetch(
@@ -30,12 +38,15 @@ export class SpreadsheetService {
 
       const events = json.table.rows.slice(1).map((row: any) => {
         const cells = row.c;
+        const groupName = cells[3]?.v || '';
+        const groupId = this.groupNameToId[groupName] || groupName;
+
         return {
           id: crypto.randomUUID(),
           title: cells[0]?.v || '',
           start: cells[1]?.v || '',
           end: cells[2]?.v || '',
-          groupId: cells[3]?.v || '',
+          groupId: groupId,
           location: cells[4]?.v || '',
           description: cells[5]?.v || ''
         };
