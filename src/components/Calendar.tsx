@@ -21,7 +21,7 @@ export function Calendar({ events, groups }: CalendarProps) {
   }, [events, groups]);
 
   const eventContent = (eventInfo: any) => {
-    const group = groups.find(g => g.groupId === eventInfo.event.groupId);
+    const group = groups.find(g => g.id === eventInfo.event.groupId);
     return (
       <div className="p-1">
         <div className="text-xs font-medium">{eventInfo.event.title}</div>
