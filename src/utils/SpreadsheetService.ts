@@ -9,7 +9,7 @@ interface SpreadsheetEvent {
 }
 
 export class SpreadsheetService {
-  private static SHEET_ID = ''; // TODO: スプレッドシートIDを設定する必要があります
+  private static SHEET_ID = '1zNS9sCVlxTlacEjfAgvChemQmq9p07TopIsHsHh7Ck4';
 
   static async fetchEvents(): Promise<{ success: boolean; error?: string; data?: any[] }> {
     try {
