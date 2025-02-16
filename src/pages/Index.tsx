@@ -4,7 +4,7 @@ import { Calendar } from '@/components/Calendar';
 import { GroupFilter } from '@/components/GroupFilter';
 import { groups, mockEvents } from '@/data/groups';
 import { Group } from '@/types';
-import { CrawlForm } from '@/components/CrawlForm';
+import { SpreadsheetForm } from '@/components/SpreadsheetForm';
 
 const Index = () => {
   const [activeGroups, setActiveGroups] = useState<Group[]>(groups);
@@ -21,7 +21,6 @@ const Index = () => {
   };
 
   const handleEventsFetched = (fetchedEvents: any[]) => {
-    // TODO: ここでフェッチしたイベントデータを適切な形式に変換する
     setEvents(fetchedEvents);
   };
 
@@ -36,7 +35,7 @@ const Index = () => {
       </header>
       <main className="container mx-auto">
         <div className="my-4">
-          <CrawlForm onEventsFetched={handleEventsFetched} />
+          <SpreadsheetForm onEventsFetched={handleEventsFetched} />
         </div>
         <GroupFilter
           groups={activeGroups}
