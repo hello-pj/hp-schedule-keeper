@@ -4,9 +4,11 @@ import { Calendar } from '@/components/Calendar';
 import { GroupFilter } from '@/components/GroupFilter';
 import { groups, mockEvents } from '@/data/groups';
 import { Group } from '@/types';
+import { CrawlForm } from '@/components/CrawlForm';
 
 const Index = () => {
   const [activeGroups, setActiveGroups] = useState<Group[]>(groups);
+  const [events, setEvents] = useState(mockEvents);
 
   const handleToggleGroup = (groupId: string) => {
     setActiveGroups(prevGroups =>
@@ -16,6 +18,11 @@ const Index = () => {
           : group
       )
     );
+  };
+
+  const handleEventsFetched = (fetchedEvents: any[]) => {
+    // TODO: ここでフェッチしたイベントデータを適切な形式に変換する
+    setEvents(fetchedEvents);
   };
 
   return (
@@ -28,12 +35,15 @@ const Index = () => {
         </div>
       </header>
       <main className="container mx-auto">
+        <div className="my-4">
+          <CrawlForm onEventsFetched={handleEventsFetched} />
+        </div>
         <GroupFilter
           groups={activeGroups}
           onToggleGroup={handleToggleGroup}
         />
         <Calendar
-          events={mockEvents}
+          events={events}
           groups={activeGroups}
         />
       </main>
