@@ -41,8 +41,8 @@ export function Calendar({ events, groups }: CalendarProps) {
   };
 
   return (
-    <div className="flex flex-col md:flex-row gap-4 p-4">
-      <div className="w-full md:w-4/5">
+    <div className="flex flex-col gap-4 p-4">
+      <div className="w-full">
         <FullCalendar
           plugins={[dayGridPlugin, timeGridPlugin, listPlugin]}
           initialView="dayGridMonth"
@@ -62,7 +62,7 @@ export function Calendar({ events, groups }: CalendarProps) {
           aspectRatio={1.8}
         />
       </div>
-      <div className="w-full md:w-1/5 p-4 border rounded-lg bg-background">
+      <div className="w-full p-4 border rounded-lg bg-background">
         <h2 className="text-lg font-semibold mb-4">イベント詳細</h2>
         {selectedEvent ? (
           <div className="space-y-2">
